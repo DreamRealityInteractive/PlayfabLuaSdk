@@ -144,8 +144,8 @@ function PlayFabClientApi.ConsumeMicrosoftStoreEntitlements(request, onSuccess, 
     IPlayFabHttps.MakePlayFabApiCall("/Client/ConsumeMicrosoftStoreEntitlements", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Checks for any new PS5 entitlements. If any are found, they are consumed (if they're consumables) and added as PlayFab
--- items
+-- Checks for any new consumable entitlements. If any are found, they are consumed (if they're consumables) and added as
+-- PlayFab items
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumeps5entitlements
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumeps5entitlements#consumeps5entitlementsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumeps5entitlements#consumeps5entitlementsresult
@@ -510,6 +510,17 @@ function PlayFabClientApi.GetPlayFabIDsFromGoogleIDs(request, onSuccess, onError
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromGoogleIDs", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Retrieves the unique PlayFab identifiers for the given set of Google Play Games identifiers. The Google Play Games
+-- identifiers are the IDs for the user accounts, available as "playerId" in the Google Play Games Services - Players API
+-- calls.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromgoogleplaygamesplayerids
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromgoogleplaygamesplayerids#getplayfabidsfromgoogleplaygamesplayeridsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromgoogleplaygamesplayerids#getplayfabidsfromgoogleplaygamesplayeridsresult
+function PlayFabClientApi.GetPlayFabIDsFromGooglePlayGamesPlayerIDs(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromGooglePlayGamesPlayerIDs", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Retrieves the unique PlayFab identifiers for the given set of Kongregate identifiers. The Kongregate identifiers are the
 -- IDs for the user accounts, available as "user_id" from the Kongregate API methods(ex:
 -- http://developers.kongregate.com/docs/client/getUserId).
@@ -539,7 +550,7 @@ function PlayFabClientApi.GetPlayFabIDsFromNintendoSwitchDeviceIds(request, onSu
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromNintendoSwitchDeviceIds", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers.
+-- Retrieves the unique PlayFab identifiers for the given set of PlayStation :tm: Network identifiers.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfrompsnaccountids
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfrompsnaccountids#getplayfabidsfrompsnaccountidsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfrompsnaccountids#getplayfabidsfrompsnaccountidsresult
@@ -783,6 +794,16 @@ function PlayFabClientApi.LinkGoogleAccount(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LinkGoogleAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Links the currently signed-in user account to their Google Play Games account, using their Google Play Games account
+-- credentials
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linkgoogleplaygamesservicesaccount
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linkgoogleplaygamesservicesaccount#linkgoogleplaygamesservicesaccountrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linkgoogleplaygamesservicesaccount#linkgoogleplaygamesservicesaccountresult
+function PlayFabClientApi.LinkGooglePlayGamesServicesAccount(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LinkGooglePlayGamesServicesAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Links the vendor-specific iOS device identifier to the user's PlayFab account
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linkiosdeviceid
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linkiosdeviceid#linkiosdeviceidrequest
@@ -829,7 +850,7 @@ function PlayFabClientApi.LinkOpenIdConnect(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LinkOpenIdConnect", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Links the PlayStation Network account associated with the provided access code to the user's PlayFab account
+-- Links the PlayStation :tm: Network account associated with the provided access code to the user's PlayFab account
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linkpsnaccount
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linkpsnaccount#linkpsnaccountrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linkpsnaccount#linkpsnaccountresult
@@ -1028,6 +1049,25 @@ function PlayFabClientApi.LoginWithGoogleAccount(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithGoogleAccount", request, nil, nil, onSuccess, onError)
 end
 
+-- Signs the user in using their Google Play Games account credentials
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithgoogleplaygamesservices
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithgoogleplaygamesservices#loginwithgoogleplaygamesservicesrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithgoogleplaygamesservices#loginresult
+function PlayFabClientApi.LoginWithGooglePlayGamesServices(request, onSuccess, onError)
+    request.TitleId = PlayFabSettings.settings.titleId
+
+    local externalOnSuccess = onSuccess
+    function wrappedOnSuccess(result)
+        PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
+        if (externalOnSuccess) then
+            externalOnSuccess(result)
+        end
+    end
+    onSuccess = wrappedOnSuccess
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithGooglePlayGamesServices", request, nil, nil, onSuccess, onError)
+end
+
 -- Signs the user in using the vendor-specific iOS device identifier, returning a session identifier that can subsequently
 -- be used for API calls which require an authenticated user
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithiosdeviceid
@@ -1148,8 +1188,8 @@ function PlayFabClientApi.LoginWithPlayFab(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithPlayFab", request, nil, nil, onSuccess, onError)
 end
 
--- Signs the user in using a PlayStation Network authentication code, returning a session identifier that can subsequently
--- be used for API calls which require an authenticated user
+-- Signs the user in using a PlayStation :tm: Network authentication code, returning a session identifier that can
+-- subsequently be used for API calls which require an authenticated user
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithpsn
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithpsn#loginwithpsnrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithpsn#loginresult
@@ -1279,7 +1319,7 @@ function PlayFabClientApi.RedeemCoupon(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/RedeemCoupon", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Uses the supplied OAuth code to refresh the internally cached player PSN auth token
+-- Uses the supplied OAuth code to refresh the internally cached player PlayStation :tm: Network auth token
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/refreshpsnauthtoken
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/refreshpsnauthtoken#refreshpsnauthtokenrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/refreshpsnauthtoken#emptyresponse
@@ -1514,6 +1554,15 @@ function PlayFabClientApi.UnlinkGoogleAccount(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkGoogleAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Unlinks the related Google Play Games account from the user's PlayFab account.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkgoogleplaygamesservicesaccount
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkgoogleplaygamesservicesaccount#unlinkgoogleplaygamesservicesaccountrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkgoogleplaygamesservicesaccount#unlinkgoogleplaygamesservicesaccountresult
+function PlayFabClientApi.UnlinkGooglePlayGamesServicesAccount(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkGooglePlayGamesServicesAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Unlinks the related iOS device identifier from the user's PlayFab account
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkiosdeviceid
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkiosdeviceid#unlinkiosdeviceidrequest
@@ -1560,7 +1609,7 @@ function PlayFabClientApi.UnlinkOpenIdConnect(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkOpenIdConnect", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Unlinks the related PSN account from the user's PlayFab account
+-- Unlinks the related PlayStation :tm: Network account from the user's PlayFab account
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkpsnaccount
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkpsnaccount#unlinkpsnaccountrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkpsnaccount#unlinkpsnaccountresult

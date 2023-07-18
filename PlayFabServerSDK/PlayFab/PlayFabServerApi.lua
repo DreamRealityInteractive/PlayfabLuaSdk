@@ -455,7 +455,7 @@ function PlayFabServerApi.GetPlayFabIDsFromNintendoSwitchDeviceIds(request, onSu
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromNintendoSwitchDeviceIds", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers.
+-- Retrieves the unique PlayFab identifiers for the given set of PlayStation :tm: Network identifiers.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfrompsnaccountids
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfrompsnaccountids#getplayfabidsfrompsnaccountidsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfrompsnaccountids#getplayfabidsfrompsnaccountidsresult
@@ -472,6 +472,17 @@ end
 function PlayFabServerApi.GetPlayFabIDsFromSteamIDs(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromSteamIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for
+-- the user accounts, available as "_id" from the Twitch API methods (ex:
+-- https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromtwitchids
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromtwitchids#getplayfabidsfromtwitchidsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromtwitchids#getplayfabidsfromtwitchidsresult
+function PlayFabServerApi.GetPlayFabIDsFromTwitchIDs(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromTwitchIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the unique PlayFab identifiers for the given set of XboxLive identifiers.
@@ -685,13 +696,40 @@ function PlayFabServerApi.GrantItemsToUsers(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GrantItemsToUsers", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Links the PlayStation Network account associated with the provided access code to the user's PlayFab account
+-- Links the Nintendo account associated with the token to the user's PlayFab account
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linknintendoserviceaccount
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linknintendoserviceaccount#linknintendoserviceaccountrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linknintendoserviceaccount#emptyresult
+function PlayFabServerApi.LinkNintendoServiceAccount(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/LinkNintendoServiceAccount", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Links the NintendoSwitchDeviceId to the user's PlayFab account
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linknintendoswitchdeviceid
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linknintendoswitchdeviceid#linknintendoswitchdeviceidrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linknintendoswitchdeviceid#linknintendoswitchdeviceidresult
+function PlayFabServerApi.LinkNintendoSwitchDeviceId(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/LinkNintendoSwitchDeviceId", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Links the PlayStation :tm: Network account associated with the provided access code to the user's PlayFab account
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linkpsnaccount
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linkpsnaccount#linkpsnaccountrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linkpsnaccount#linkpsnaccountresult
 function PlayFabServerApi.LinkPSNAccount(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/LinkPSNAccount", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Links the PlayStation :tm: Network account associated with the provided user id to the user's PlayFab account
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linkpsnid
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linkpsnid#linkpsnidrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linkpsnid#linkpsnidresponse
+function PlayFabServerApi.LinkPSNId(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/LinkPSNId", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Links the custom server identifier, generated by the title, to the user's PlayFab account.
@@ -701,6 +739,15 @@ end
 function PlayFabServerApi.LinkServerCustomId(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/LinkServerCustomId", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Links the Steam account associated with the provided Steam ID to the user's PlayFab account
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linksteamid
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linksteamid#linksteamidrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linksteamid#linksteamidresult
+function PlayFabServerApi.LinkSteamId(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/LinkSteamId", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Links the Xbox Live account associated with the provided access code to the user's PlayFab account
@@ -1060,7 +1107,25 @@ function PlayFabServerApi.SubtractUserVirtualCurrency(request, onSuccess, onErro
     IPlayFabHttps.MakePlayFabApiCall("/Server/SubtractUserVirtualCurrency", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Unlinks the related PSN account from the user's PlayFab account
+-- Unlinks the related Nintendo account from the user's PlayFab account
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinknintendoserviceaccount
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinknintendoserviceaccount#unlinknintendoserviceaccountrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinknintendoserviceaccount#emptyresponse
+function PlayFabServerApi.UnlinkNintendoServiceAccount(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/UnlinkNintendoServiceAccount", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Unlinks the related NintendoSwitchDeviceId from the user's PlayFab account
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinknintendoswitchdeviceid
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinknintendoswitchdeviceid#unlinknintendoswitchdeviceidrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinknintendoswitchdeviceid#unlinknintendoswitchdeviceidresult
+function PlayFabServerApi.UnlinkNintendoSwitchDeviceId(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/UnlinkNintendoSwitchDeviceId", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Unlinks the related PlayStation :tm: Network account from the user's PlayFab account
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkpsnaccount
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkpsnaccount#unlinkpsnaccountrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkpsnaccount#unlinkpsnaccountresult
@@ -1076,6 +1141,15 @@ end
 function PlayFabServerApi.UnlinkServerCustomId(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UnlinkServerCustomId", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Unlinks the Steam account associated with the provided Steam ID to the user's PlayFab account
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinksteamid
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinksteamid#unlinksteamidrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinksteamid#unlinksteamidresult
+function PlayFabServerApi.UnlinkSteamId(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/UnlinkSteamId", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Unlinks the related Xbox Live account from the user's PlayFab account
