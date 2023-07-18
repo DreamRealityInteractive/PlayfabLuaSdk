@@ -12,6 +12,33 @@ local PlayFabAuthenticationApi = {
     settings = PlayFabSettings.settings
 }
 
+-- Create a game_server entity token and return a new or existing game_server entity.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/gameserveridentity/authentication/authenticategameserverwithcustomid
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/gameserveridentity/authentication/authenticategameserverwithcustomid#authenticatecustomidrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/gameserveridentity/authentication/authenticategameserverwithcustomid#authenticatecustomidresult
+function PlayFabAuthenticationApi.AuthenticateGameServerWithCustomId(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+
+    local externalOnSuccess = onSuccess
+    function wrappedOnSuccess(result)
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
+        if (externalOnSuccess) then
+            externalOnSuccess(result)
+        end
+    end
+    onSuccess = wrappedOnSuccess
+    IPlayFabHttps.MakePlayFabApiCall("/GameServerIdentity/AuthenticateGameServerWithCustomId", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Delete a game_server entity.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/gameserveridentity/authentication/delete
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/gameserveridentity/authentication/delete#deleterequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/gameserveridentity/authentication/delete#emptyresponse
+function PlayFabAuthenticationApi.Delete(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/GameServerIdentity/Delete", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Method to exchange a legacy AuthenticationTicket or title SecretKey for an Entity Token or to refresh a still valid
 -- Entity Token.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/authentication/authentication/getentitytoken

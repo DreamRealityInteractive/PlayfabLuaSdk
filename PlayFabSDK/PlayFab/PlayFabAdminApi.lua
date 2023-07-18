@@ -861,7 +861,10 @@ function PlayFabAdminApi.SetStoreItems(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/SetStoreItems", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Creates and updates the key-value store of custom title settings which can be read by the client
+-- Creates and updates the key-value store of custom title settings which can be read by the client. For example, a
+-- developer could choose to store values which modify the user experience, such as enemy spawn rates, weapon strengths,
+-- movement speeds, etc. This allows a developer to update the title without the need to create, test, and ship a new
+-- build.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/settitledata
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/settitledata#settitledatarequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/settitledata#settitledataresult
@@ -879,7 +882,8 @@ function PlayFabAdminApi.SetTitleDataAndOverrides(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/SetTitleDataAndOverrides", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Updates the key-value store of custom title settings which cannot be read by the client
+-- Updates the key-value store of custom title settings which cannot be read by the client. These values can be used to
+-- tweak settings used by game servers and Cloud Scripts without the need to update and re-deploy.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/settitleinternaldata
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/settitleinternaldata#settitledatarequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/settitleinternaldata#settitledataresult

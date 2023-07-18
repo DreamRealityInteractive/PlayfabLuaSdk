@@ -48,6 +48,15 @@ function PlayFabProfilesApi.GetTitlePlayersFromMasterPlayerAccountIds(request, o
     IPlayFabHttps.MakePlayFabApiCall("/Profile/GetTitlePlayersFromMasterPlayerAccountIds", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Retrieves the title player accounts associated with the given XUIDs.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/profile/account-management/gettitleplayersfromxboxliveids
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/profile/account-management/gettitleplayersfromxboxliveids#gettitleplayersfromxboxliveidsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/profile/account-management/gettitleplayersfromxboxliveids#gettitleplayersfromprovideridsresponse
+function PlayFabProfilesApi.GetTitlePlayersFromXboxLiveIDs(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Profile/GetTitlePlayersFromXboxLiveIDs", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Sets the global title access policy
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/profile/account-management/setglobalpolicy
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/profile/account-management/setglobalpolicy#setglobalpolicyrequest
