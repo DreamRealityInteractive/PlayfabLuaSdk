@@ -57,6 +57,15 @@ function PlayFabProfilesApi.GetTitlePlayersFromXboxLiveIDs(request, onSuccess, o
     IPlayFabHttps.MakePlayFabApiCall("/Profile/GetTitlePlayersFromXboxLiveIDs", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Update the display name of the entity
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/profile/account-management/setdisplayname
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/profile/account-management/setdisplayname#setdisplaynamerequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/profile/account-management/setdisplayname#setdisplaynameresponse
+function PlayFabProfilesApi.SetDisplayName(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Profile/SetDisplayName", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Sets the global title access policy
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/profile/account-management/setglobalpolicy
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/profile/account-management/setglobalpolicy#setglobalpolicyrequest

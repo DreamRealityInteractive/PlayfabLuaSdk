@@ -12,7 +12,7 @@ local PlayFabEconomyApi = {
     settings = PlayFabSettings.settings
 }
 
--- Add inventory items. Up to 3500 stacks of items can be added to a single inventory collection. Stack size is uncapped.
+-- Add inventory items. Up to 10,000 stacks of items can be added to a single inventory collection. Stack size is uncapped.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/addinventoryitems
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/addinventoryitems#addinventoryitemsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/addinventoryitems#addinventoryitemsresponse
@@ -79,17 +79,28 @@ function PlayFabEconomyApi.DeleteItem(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Catalog/DeleteItem", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
--- Execute a list of Inventory Operations. A maximum list of 10 operations can be performed by a single request. There is
--- also a limit to 250 items that can be modified/added in a single request. For example, adding a bundle with 50 items
+-- Execute a list of Inventory Operations. A maximum list of 50 operations can be performed by a single request. There is
+-- also a limit to 300 items that can be modified/added in a single request. For example, adding a bundle with 50 items
 -- counts as 50 items modified. All operations must be done within a single inventory collection. This API has a reduced
--- RPS compared to an individual inventory operation with Player Entities limited to 15 requests in 90 seconds and Title
--- Entities limited to 500 requests in 10 seconds.
+-- RPS compared to an individual inventory operation with Player Entities limited to 60 requests in 90 seconds.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/executeinventoryoperations
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/executeinventoryoperations#executeinventoryoperationsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/executeinventoryoperations#executeinventoryoperationsresponse
 function PlayFabEconomyApi.ExecuteInventoryOperations(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Inventory/ExecuteInventoryOperations", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Transfer a list of inventory items. A maximum list of 50 operations can be performed by a single request. When the
+-- response code is 202, one or more operations did not complete within the timeframe of the request. You can identify the
+-- pending operations by looking for OperationStatus = 'InProgress'. You can check on the operation status at anytime
+-- within 1 day of the request by passing the TransactionToken to the GetInventoryOperationStatus API.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/executetransferoperations
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/executetransferoperations#executetransferoperationsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/executetransferoperations#executetransferoperationsresponse
+function PlayFabEconomyApi.ExecuteTransferOperations(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Inventory/ExecuteTransferOperations", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Gets the configuration for the catalog. Only Title Entities can call this API. There is a limit of 100 requests in 10
@@ -145,8 +156,9 @@ function PlayFabEconomyApi.GetEntityItemReview(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Catalog/GetEntityItemReview", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
--- Get Inventory Collection Ids. Up to 50 Ids can be returned at once. You can use continuation tokens to paginate through
--- results that return greater than the limit. It can take a few seconds for new collection Ids to show up.
+-- Get Inventory Collection Ids. Up to 50 Ids can be returned at once (or 250 with response compression enabled). You can
+-- use continuation tokens to paginate through results that return greater than the limit. It can take a few seconds for
+-- new collection Ids to show up.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/getinventorycollectionids
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/getinventorycollectionids#getinventorycollectionidsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/getinventorycollectionids#getinventorycollectionidsresponse
@@ -162,6 +174,16 @@ end
 function PlayFabEconomyApi.GetInventoryItems(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Inventory/GetInventoryItems", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Get the status of an inventory operation using an OperationToken. You can check on the operation status at anytime
+-- within 1 day of the request by passing the TransactionToken to the this API.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/getinventoryoperationstatus
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/getinventoryoperationstatus#getinventoryoperationstatusrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/getinventoryoperationstatus#getinventoryoperationstatusresponse
+function PlayFabEconomyApi.GetInventoryOperationStatus(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Inventory/GetInventoryOperationStatus", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Retrieves an item from the public catalog. GetItem does not work off a cache of the Catalog and should be used when
@@ -246,10 +268,9 @@ function PlayFabEconomyApi.GetMicrosoftStoreAccessTokens(request, onSuccess, onE
     IPlayFabHttps.MakePlayFabApiCall("/Inventory/GetMicrosoftStoreAccessTokens", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
--- Get transaction history for a player. Up to 50 Events can be returned at once. You can use continuation tokens to
+-- Get transaction history for a player. Up to 250 Events can be returned at once. You can use continuation tokens to
 -- paginate through results that return greater than the limit. Getting transaction history has a lower RPS limit than
--- getting a Player's inventory with Player Entities having a limit of 30 requests in 300 seconds and Title Entities having
--- a limit of 100 requests in 10 seconds.
+-- getting a Player's inventory with Player Entities having a limit of 30 requests in 300 seconds.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/gettransactionhistory
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/gettransactionhistory#gettransactionhistoryrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/gettransactionhistory#gettransactionhistoryresponse
@@ -268,7 +289,7 @@ function PlayFabEconomyApi.PublishDraftItem(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Catalog/PublishDraftItem", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
--- Purchase an item or bundle. Up to 3500 stacks of items can be added to a single inventory collection. Stack size is
+-- Purchase an item or bundle. Up to 10,000 stacks of items can be added to a single inventory collection. Stack size is
 -- uncapped.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/purchaseinventoryitems
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/purchaseinventoryitems#purchaseinventoryitemsrequest
@@ -410,8 +431,11 @@ function PlayFabEconomyApi.TakedownItemReviews(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Catalog/TakedownItemReviews", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
--- Transfer inventory items. When transferring across collections, a 202 response indicates that the transfer is in
--- progress and will complete soon. More information about item transfer scenarios can be found here:
+-- Transfer inventory items. When transferring across collections, a 202 response indicates that the transfer did not
+-- complete within the timeframe of the request. You can identify the pending operations by looking for OperationStatus =
+-- 'InProgress'. You can check on the operation status at anytime within 1 day of the request by passing the
+-- TransactionToken to the GetInventoryOperationStatus API. More information about item transfer scenarios can be found
+-- here:
 -- https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/inventory/?tabs=inventory-game-manager#transfer-inventory-items
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/transferinventoryitems
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/inventory/inventory/transferinventoryitems#transferinventoryitemsrequest
