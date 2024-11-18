@@ -41,6 +41,15 @@ function PlayFabCloudScriptApi.GetFunction(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/CloudScript/GetFunction", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Lists all currently registered Event Hub triggered Azure Functions for a given title.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/listeventhubfunctions
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/listeventhubfunctions#listfunctionsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/listeventhubfunctions#listeventhubfunctionsresult
+function PlayFabCloudScriptApi.ListEventHubFunctions(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/CloudScript/ListEventHubFunctions", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Lists all currently registered Azure Functions for a given title.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/listfunctions
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/listfunctions#listfunctionsrequest
@@ -102,6 +111,15 @@ end
 function PlayFabCloudScriptApi.PostFunctionResultForScheduledTask(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/CloudScript/PostFunctionResultForScheduledTask", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Registers an event hub triggered Azure Function with a title.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/registereventhubfunction
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/registereventhubfunction#registereventhubfunctionrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/registereventhubfunction#emptyresult
+function PlayFabCloudScriptApi.RegisterEventHubFunction(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/CloudScript/RegisterEventHubFunction", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Registers an HTTP triggered Azure function with a title.

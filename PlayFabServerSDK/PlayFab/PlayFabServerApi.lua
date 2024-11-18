@@ -12,7 +12,8 @@ local PlayFabServerApi = {
     settings = PlayFabSettings.settings
 }
 
--- Increments the character's balance of the specified virtual currency by the stated amount
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Increments the character's balance of the specified virtual currency by the stated amount
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/addcharactervirtualcurrency
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/addcharactervirtualcurrency#addcharactervirtualcurrencyrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/addcharactervirtualcurrency#modifycharactervirtualcurrencyresult
@@ -63,7 +64,8 @@ function PlayFabServerApi.AddSharedGroupMembers(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/AddSharedGroupMembers", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Increments the user's balance of the specified virtual currency by the stated amount
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Increments the user's balance of the specified virtual currency by the stated amount
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/adduservirtualcurrency
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/adduservirtualcurrency#adduservirtualcurrencyrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/adduservirtualcurrency#modifyuservirtualcurrencyresult
@@ -99,7 +101,9 @@ function PlayFabServerApi.BanUsers(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/BanUsers", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's inventory.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's
+-- inventory.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/consumeitem
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/consumeitem#consumeitemrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/consumeitem#consumeitemresult
@@ -158,17 +162,10 @@ function PlayFabServerApi.DeleteSharedGroup(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/DeleteSharedGroup", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Inform the matchmaker that a Game Server Instance is removed.
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/deregistergame
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/deregistergame#deregistergamerequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/deregistergame#deregistergameresponse
-function PlayFabServerApi.DeregisterGame(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Server/DeregisterGame", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
--- Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would have been
--- added to the player inventory, if the Random Result Table were added via a Bundle or a call to UnlockContainer.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would
+-- have been added to the player inventory, if the Random Result Table were added via a Bundle or a call to
+-- UnlockContainer.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/evaluaterandomresulttable
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/evaluaterandomresulttable#evaluaterandomresulttablerequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/evaluaterandomresulttable#evaluaterandomresulttableresult
@@ -207,7 +204,8 @@ function PlayFabServerApi.GetAllUsersCharacters(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetAllUsersCharacters", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getcatalogitems
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getcatalogitems#getcatalogitemsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getcatalogitems#getcatalogitemsresult
@@ -234,7 +232,8 @@ function PlayFabServerApi.GetCharacterInternalData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetCharacterInternalData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the specified character's current inventory of virtual goods
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Retrieves the specified character's current inventory of virtual goods
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getcharacterinventory
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getcharacterinventory#getcharacterinventoryrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getcharacterinventory#getcharacterinventoryresult
@@ -464,6 +463,15 @@ function PlayFabServerApi.GetPlayFabIDsFromPSNAccountIDs(request, onSuccess, onE
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromPSNAccountIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Retrieves the unique PlayFab identifiers for the given set of PlayStation :tm: Network identifiers.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfrompsnonlineids
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfrompsnonlineids#getplayfabidsfrompsnonlineidsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfrompsnonlineids#getplayfabidsfrompsnonlineidsresult
+function PlayFabServerApi.GetPlayFabIDsFromPSNOnlineIDs(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromPSNOnlineIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
 -- IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromsteamids
@@ -503,8 +511,9 @@ function PlayFabServerApi.GetPublisherData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPublisherData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the configuration information for the specified random results tables for the title, including all ItemId
--- values and weights
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Retrieves the configuration information for the specified random results tables for the title, including all
+-- ItemId values and weights
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getrandomresulttables
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getrandomresulttables#getrandomresulttablesrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getrandomresulttables#getrandomresulttablesresult
@@ -533,7 +542,9 @@ function PlayFabServerApi.GetSharedGroupData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetSharedGroupData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the set of items defined for the specified store, including all prices defined, for the specified player
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Retrieves the set of items defined for the specified store, including all prices defined, for the specified
+-- player
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getstoreitems
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getstoreitems#getstoreitemsserverrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getstoreitems#getstoreitemsresult
@@ -614,7 +625,8 @@ function PlayFabServerApi.GetUserInternalData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetUserInternalData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the specified user's current inventory of virtual goods
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Retrieves the specified user's current inventory of virtual goods
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getuserinventory
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getuserinventory#getuserinventoryrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getuserinventory#getuserinventoryresult
@@ -669,7 +681,8 @@ function PlayFabServerApi.GrantCharacterToUser(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GrantCharacterToUser", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Adds the specified items to the specified character's inventory
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Adds the specified items to the specified character's inventory
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstocharacter
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstocharacter#grantitemstocharacterrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstocharacter#grantitemstocharacterresult
@@ -678,7 +691,8 @@ function PlayFabServerApi.GrantItemsToCharacter(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GrantItemsToCharacter", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Adds the specified items to the specified user's inventory
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Adds the specified items to the specified user's inventory
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstouser
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstouser#grantitemstouserrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstouser#grantitemstouserresult
@@ -687,7 +701,8 @@ function PlayFabServerApi.GrantItemsToUser(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GrantItemsToUser", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Adds the specified items to the specified user inventories
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Adds the specified items to the specified user inventories
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstousers
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstousers#grantitemstousersrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstousers#grantitemstousersresult
@@ -703,6 +718,15 @@ end
 function PlayFabServerApi.LinkNintendoServiceAccount(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/LinkNintendoServiceAccount", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Links the Nintendo account associated with the Nintendo Service Account subject or id to the user's PlayFab account
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linknintendoserviceaccountsubject
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linknintendoserviceaccountsubject#linknintendoserviceaccountsubjectrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linknintendoserviceaccountsubject#emptyresult
+function PlayFabServerApi.LinkNintendoServiceAccountSubject(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/LinkNintendoServiceAccountSubject", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Links the NintendoSwitchDeviceId to the user's PlayFab account
@@ -759,6 +783,16 @@ function PlayFabServerApi.LinkXboxAccount(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/LinkXboxAccount", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Signs the user in using a PlayStation :tm: Network authentication code, returning a session identifier that can
+-- subsequently be used for API calls which require an authenticated user
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithpsn
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithpsn#loginwithpsnrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithpsn#serverloginresult
+function PlayFabServerApi.LoginWithPSN(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/LoginWithPSN", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Securely login a game client from an external server backend using a custom identifier for that player. Server Custom ID
 -- and Client Custom ID are mutually exclusive and cannot be used to retrieve the same player account.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithservercustomid
@@ -799,7 +833,8 @@ function PlayFabServerApi.LoginWithXboxId(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/LoginWithXboxId", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Modifies the number of remaining uses of a player's inventory item
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Modifies the number of remaining uses of a player's inventory item
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/modifyitemuses
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/modifyitemuses#modifyitemusesrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/modifyitemuses#modifyitemusesresult
@@ -808,7 +843,8 @@ function PlayFabServerApi.ModifyItemUses(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/ModifyItemUses", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Moves an item from a character's inventory into another of the users's character's inventory.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Moves an item from a character's inventory into another of the users's character's inventory.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtocharacterfromcharacter
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtocharacterfromcharacter#moveitemtocharacterfromcharacterrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtocharacterfromcharacter#moveitemtocharacterfromcharacterresult
@@ -817,7 +853,8 @@ function PlayFabServerApi.MoveItemToCharacterFromCharacter(request, onSuccess, o
     IPlayFabHttps.MakePlayFabApiCall("/Server/MoveItemToCharacterFromCharacter", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Moves an item from a user's inventory into their character's inventory.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Moves an item from a user's inventory into their character's inventory.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtocharacterfromuser
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtocharacterfromuser#moveitemtocharacterfromuserrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtocharacterfromuser#moveitemtocharacterfromuserresult
@@ -826,7 +863,8 @@ function PlayFabServerApi.MoveItemToCharacterFromUser(request, onSuccess, onErro
     IPlayFabHttps.MakePlayFabApiCall("/Server/MoveItemToCharacterFromUser", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Moves an item from a character's inventory into the owning user's inventory.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Moves an item from a character's inventory into the owning user's inventory.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtouserfromcharacter
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtouserfromcharacter#moveitemtouserfromcharacterrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtouserfromcharacter#moveitemtouserfromcharacterresult
@@ -835,16 +873,8 @@ function PlayFabServerApi.MoveItemToUserFromCharacter(request, onSuccess, onErro
     IPlayFabHttps.MakePlayFabApiCall("/Server/MoveItemToUserFromCharacter", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Informs the PlayFab match-making service that the user specified has left the Game Server Instance
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/notifymatchmakerplayerleft
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/notifymatchmakerplayerleft#notifymatchmakerplayerleftrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/notifymatchmakerplayerleft#notifymatchmakerplayerleftresult
-function PlayFabServerApi.NotifyMatchmakerPlayerLeft(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Server/NotifyMatchmakerPlayerLeft", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
--- Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
 -- Economy->Catalogs tab in the PlayFab Game Manager.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/redeemcoupon
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/redeemcoupon#redeemcouponrequest
@@ -852,33 +882,6 @@ end
 function PlayFabServerApi.RedeemCoupon(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/RedeemCoupon", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
--- Validates a Game Server session ticket and returns details about the user
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/redeemmatchmakerticket
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/redeemmatchmakerticket#redeemmatchmakerticketrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/redeemmatchmakerticket#redeemmatchmakerticketresult
-function PlayFabServerApi.RedeemMatchmakerTicket(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Server/RedeemMatchmakerTicket", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
--- Set the state of the indicated Game Server Instance. Also update the heartbeat for the instance.
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/refreshgameserverinstanceheartbeat
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/refreshgameserverinstanceheartbeat#refreshgameserverinstanceheartbeatrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/refreshgameserverinstanceheartbeat#refreshgameserverinstanceheartbeatresult
-function PlayFabServerApi.RefreshGameServerInstanceHeartbeat(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Server/RefreshGameServerInstanceHeartbeat", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
--- Inform the matchmaker that a new Game Server Instance is added.
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/registergame
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/registergame#registergamerequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/registergame#registergameresponse
-function PlayFabServerApi.RegisterGame(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Server/RegisterGame", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Removes the specified friend from the the user's friend list
@@ -948,7 +951,8 @@ function PlayFabServerApi.RevokeBans(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/RevokeBans", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Revokes access to an item in a user's inventory
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Revokes access to an item in a user's inventory
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/revokeinventoryitem
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/revokeinventoryitem#revokeinventoryitemrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/revokeinventoryitem#revokeinventoryresult
@@ -957,7 +961,8 @@ function PlayFabServerApi.RevokeInventoryItem(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/RevokeInventoryItem", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Revokes access for up to 25 items across multiple users and characters.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Revokes access for up to 25 items across multiple users and characters.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/revokeinventoryitems
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/revokeinventoryitems#revokeinventoryitemsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/revokeinventoryitems#revokeinventoryitemsresult
@@ -1023,33 +1028,6 @@ function PlayFabServerApi.SetFriendTags(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/SetFriendTags", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Sets the custom data of the indicated Game Server Instance
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancedata
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancedata#setgameserverinstancedatarequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancedata#setgameserverinstancedataresult
-function PlayFabServerApi.SetGameServerInstanceData(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Server/SetGameServerInstanceData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
--- Set the state of the indicated Game Server Instance.
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancestate
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancestate#setgameserverinstancestaterequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancestate#setgameserverinstancestateresult
-function PlayFabServerApi.SetGameServerInstanceState(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Server/SetGameServerInstanceState", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
--- Set custom tags for the specified Game Server Instance
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancetags
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancetags#setgameserverinstancetagsrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancetags#setgameserverinstancetagsresult
-function PlayFabServerApi.SetGameServerInstanceTags(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Server/SetGameServerInstanceTags", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
 -- Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's
 -- secret use the Admin or Server API method SetPlayerSecret.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/setplayersecret
@@ -1087,8 +1065,9 @@ function PlayFabServerApi.SetTitleInternalData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/SetTitleInternalData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Decrements the character's balance of the specified virtual currency by the stated amount. It is possible to make a VC
--- balance negative with this API.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Decrements the character's balance of the specified virtual currency by the stated amount. It is possible to
+-- make a VC balance negative with this API.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/subtractcharactervirtualcurrency
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/subtractcharactervirtualcurrency#subtractcharactervirtualcurrencyrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/subtractcharactervirtualcurrency#modifycharactervirtualcurrencyresult
@@ -1097,8 +1076,9 @@ function PlayFabServerApi.SubtractCharacterVirtualCurrency(request, onSuccess, o
     IPlayFabHttps.MakePlayFabApiCall("/Server/SubtractCharacterVirtualCurrency", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make a VC
--- balance negative with this API.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make
+-- a VC balance negative with this API.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/subtractuservirtualcurrency
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/subtractuservirtualcurrency#subtractuservirtualcurrencyrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/subtractuservirtualcurrency#modifyuservirtualcurrencyresult
@@ -1161,9 +1141,10 @@ function PlayFabServerApi.UnlinkXboxAccount(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/UnlinkXboxAccount", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when required), and
--- returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses >
--- 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when
+-- required), and returns the contents of the opened container. If the container (and key when relevant) are consumable
+-- (RemainingUses > 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/unlockcontainerinstance
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/unlockcontainerinstance#unlockcontainerinstancerequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/unlockcontainerinstance#unlockcontaineritemresult
@@ -1172,9 +1153,10 @@ function PlayFabServerApi.UnlockContainerInstance(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/UnlockContainerInstance", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Searches Player or Character inventory for any ItemInstance matching the given CatalogItemId, if necessary unlocks it
--- using any appropriate key, and returns the contents of the opened container. If the container (and key when relevant)
--- are consumable (RemainingUses > 0), their RemainingUses will be decremented, consistent with the operation of
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Searches Player or Character inventory for any ItemInstance matching the given CatalogItemId, if necessary
+-- unlocks it using any appropriate key, and returns the contents of the opened container. If the container (and key when
+-- relevant) are consumable (RemainingUses > 0), their RemainingUses will be decremented, consistent with the operation of
 -- ConsumeItem.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/unlockcontaineritem
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/unlockcontaineritem#unlockcontaineritemrequest
@@ -1278,7 +1260,8 @@ function PlayFabServerApi.UpdateUserInternalData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateUserInternalData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Updates the key-value pair data tagged to the specified item, which is read-only from the client.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Updates the key-value pair data tagged to the specified item, which is read-only from the client.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/updateuserinventoryitemcustomdata
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/updateuserinventoryitemcustomdata#updateuserinventoryitemdatarequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/updateuserinventoryitemcustomdata#emptyresponse

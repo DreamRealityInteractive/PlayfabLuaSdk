@@ -48,7 +48,8 @@ function PlayFabAdminApi.AddPlayerTag(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/AddPlayerTag", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Increments the specified virtual currency by the stated amount
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Increments the specified virtual currency by the stated amount
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/adduservirtualcurrency
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/adduservirtualcurrency#adduservirtualcurrencyrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/adduservirtualcurrency#modifyuservirtualcurrencyresult
@@ -57,8 +58,9 @@ function PlayFabAdminApi.AddUserVirtualCurrency(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/AddUserVirtualCurrency", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of
--- 2,147,483,647 when granted to a player. Any value over that will be discarded.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum
+-- value of 2,147,483,647 when granted to a player. Any value over that will be discarded.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/addvirtualcurrencytypes
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/addvirtualcurrencytypes#addvirtualcurrencytypesrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/addvirtualcurrencytypes#blankresult
@@ -76,7 +78,8 @@ function PlayFabAdminApi.BanUsers(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/BanUsers", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Checks the global count for the limited edition item.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Checks the global count for the limited edition item.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/checklimitededitionitemavailability
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/checklimitededitionitemavailability#checklimitededitionitemavailabilityrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/checklimitededitionitemavailability#checklimitededitionitemavailabilityresult
@@ -169,6 +172,15 @@ function PlayFabAdminApi.DeleteMasterPlayerAccount(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/DeleteMasterPlayerAccount", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Deletes PlayStream and telemetry event data associated with the master player account from PlayFab storage
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/account-management/deletemasterplayereventdata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/account-management/deletemasterplayereventdata#deletemasterplayereventdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/account-management/deletemasterplayereventdata#deletemasterplayereventdataresult
+function PlayFabAdminApi.DeleteMasterPlayerEventData(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/DeleteMasterPlayerEventData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Deletes a player's subscription
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/account-management/deletemembershipsubscription
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/account-management/deletemembershipsubscription#deletemembershipsubscriptionrequest
@@ -215,7 +227,8 @@ function PlayFabAdminApi.DeleteSegment(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/DeleteSegment", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Deletes an existing virtual item store
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Deletes an existing virtual item store
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/deletestore
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/deletestore#deletestorerequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/deletestore#deletestoreresult
@@ -290,7 +303,8 @@ function PlayFabAdminApi.GetAllSegments(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetAllSegments", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getcatalogitems
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getcatalogitems#getcatalogitemsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getcatalogitems#getcatalogitemsresult
@@ -354,24 +368,6 @@ end
 function PlayFabAdminApi.GetDataReport(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetDataReport", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
--- Retrieves the details for a specific completed session, including links to standard out and standard error logs
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/matchmaking/getmatchmakergameinfo
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/matchmaking/getmatchmakergameinfo#getmatchmakergameinforequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/matchmaking/getmatchmakergameinfo#getmatchmakergameinforesult
-function PlayFabAdminApi.GetMatchmakerGameInfo(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Admin/GetMatchmakerGameInfo", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
--- Retrieves the details of defined game modes for the specified game server executable
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/matchmaking/getmatchmakergamemodes
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/matchmaking/getmatchmakergamemodes#getmatchmakergamemodesrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/matchmaking/getmatchmakergamemodes#getmatchmakergamemodesresult
-function PlayFabAdminApi.GetMatchmakerGameModes(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Admin/GetMatchmakerGameModes", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Get the list of titles that the player has played
@@ -478,7 +474,8 @@ function PlayFabAdminApi.GetPublisherData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetPublisherData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the random drop table configuration for the title
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Retrieves the random drop table configuration for the title
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getrandomresulttables
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getrandomresulttables#getrandomresulttablesrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getrandomresulttables#getrandomresulttablesresult
@@ -508,7 +505,8 @@ function PlayFabAdminApi.GetSegments(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetSegments", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the set of items defined for the specified store, including all prices defined
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Retrieves the set of items defined for the specified store, including all prices defined
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getstoreitems
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getstoreitems#getstoreitemsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getstoreitems#getstoreitemsresult
@@ -589,7 +587,8 @@ function PlayFabAdminApi.GetUserInternalData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetUserInternalData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the specified user's current inventory of virtual goods
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Retrieves the specified user's current inventory of virtual goods
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/getuserinventory
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/getuserinventory#getuserinventoryrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/getuserinventory#getuserinventoryresult
@@ -634,7 +633,8 @@ function PlayFabAdminApi.GetUserReadOnlyData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetUserReadOnlyData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Adds the specified items to the specified user inventories
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Adds the specified items to the specified user inventories
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/grantitemstousers
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/grantitemstousers#grantitemstousersrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/grantitemstousers#grantitemstousersresult
@@ -643,7 +643,8 @@ function PlayFabAdminApi.GrantItemsToUsers(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GrantItemsToUsers", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Increases the global count for the given scarce resource.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Increases the global count for the given scarce resource.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/incrementlimitededitionitemavailability
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/incrementlimitededitionitemavailability#incrementlimitededitionitemavailabilityrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/incrementlimitededitionitemavailability#incrementlimitededitionitemavailabilityresult
@@ -670,7 +671,8 @@ function PlayFabAdminApi.ListOpenIdConnection(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/ListOpenIdConnection", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retuns the list of all defined virtual currencies for the title
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Retuns the list of all defined virtual currencies for the title
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/listvirtualcurrencytypes
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/listvirtualcurrencytypes#listvirtualcurrencytypesrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/listvirtualcurrencytypes#listvirtualcurrencytypesresult
@@ -679,16 +681,8 @@ function PlayFabAdminApi.ListVirtualCurrencyTypes(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/ListVirtualCurrencyTypes", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Updates the build details for the specified game server executable
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/modifyserverbuild
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/modifyserverbuild#modifyserverbuildrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/modifyserverbuild#modifyserverbuildresult
-function PlayFabAdminApi.ModifyServerBuild(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Admin/ModifyServerBuild", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
--- Attempts to process an order refund through the original real money payment provider.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Attempts to process an order refund through the original real money payment provider.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/refundpurchase
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/refundpurchase#refundpurchaserequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/refundpurchase#refundpurchaseresponse
@@ -706,7 +700,8 @@ function PlayFabAdminApi.RemovePlayerTag(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/RemovePlayerTag", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Removes one or more virtual currencies from the set defined for the title.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Removes one or more virtual currencies from the set defined for the title.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/removevirtualcurrencytypes
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/removevirtualcurrencytypes#removevirtualcurrencytypesrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/removevirtualcurrencytypes#blankresult
@@ -742,7 +737,8 @@ function PlayFabAdminApi.ResetUserStatistics(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/ResetUserStatistics", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Attempts to resolve a dispute with the original order's payment provider.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Attempts to resolve a dispute with the original order's payment provider.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/resolvepurchasedispute
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/resolvepurchasedispute#resolvepurchasedisputerequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-data-management/resolvepurchasedispute#resolvepurchasedisputeresponse
@@ -769,7 +765,8 @@ function PlayFabAdminApi.RevokeBans(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/RevokeBans", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Revokes access to an item in a user's inventory
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Revokes access to an item in a user's inventory
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/revokeinventoryitem
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/revokeinventoryitem#revokeinventoryitemrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/revokeinventoryitem#revokeinventoryresult
@@ -778,7 +775,8 @@ function PlayFabAdminApi.RevokeInventoryItem(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/RevokeInventoryItem", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Revokes access for up to 25 items across multiple users and characters.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Revokes access for up to 25 items across multiple users and characters.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/revokeinventoryitems
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/revokeinventoryitems#revokeinventoryitemsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/revokeinventoryitems#revokeinventoryitemsresult
@@ -807,7 +805,8 @@ function PlayFabAdminApi.SendAccountRecoveryEmail(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/SendAccountRecoveryEmail", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Creates the catalog configuration of all virtual goods for the specified catalog version
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Creates the catalog configuration of all virtual goods for the specified catalog version
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/setcatalogitems
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/setcatalogitems#updatecatalogitemsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/setcatalogitems#updatecatalogitemsresult
@@ -852,7 +851,8 @@ function PlayFabAdminApi.SetPublisherData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/SetPublisherData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Sets all the items in one virtual store
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Sets all the items in one virtual store
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/setstoreitems
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/setstoreitems#updatestoreitemsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/setstoreitems#updatestoreitemsresult
@@ -903,7 +903,8 @@ function PlayFabAdminApi.SetupPushNotification(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/SetupPushNotification", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Decrements the specified virtual currency by the stated amount
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Decrements the specified virtual currency by the stated amount
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/subtractuservirtualcurrency
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/subtractuservirtualcurrency#subtractuservirtualcurrencyrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/subtractuservirtualcurrency#modifyuservirtualcurrencyresult
@@ -921,7 +922,8 @@ function PlayFabAdminApi.UpdateBans(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/UpdateBans", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Updates the catalog configuration for virtual goods in the specified catalog version
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Updates the catalog configuration for virtual goods in the specified catalog version
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/updatecatalogitems
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/updatecatalogitems#updatecatalogitemsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/updatecatalogitems#updatecatalogitemsresult
@@ -977,7 +979,8 @@ function PlayFabAdminApi.UpdatePolicy(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/UpdatePolicy", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Updates the random drop table configuration for the title
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Updates the random drop table configuration for the title
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/updaterandomresulttables
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/updaterandomresulttables#updaterandomresulttablesrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/updaterandomresulttables#updaterandomresulttablesresult
@@ -995,7 +998,8 @@ function PlayFabAdminApi.UpdateSegment(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/UpdateSegment", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Updates an existing virtual item store with new or modified items
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Updates an existing virtual item store with new or modified items
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/updatestoreitems
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/updatestoreitems#updatestoreitemsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/updatestoreitems#updatestoreitemsresult

@@ -78,7 +78,8 @@ function PlayFabClientApi.AddUsernamePassword(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/AddUsernamePassword", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Increments the user's balance of the specified virtual currency by the stated amount
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Increments the user's balance of the specified virtual currency by the stated amount
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/adduservirtualcurrency
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/adduservirtualcurrency#adduservirtualcurrencyrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/adduservirtualcurrency#modifyuservirtualcurrencyresult
@@ -116,8 +117,9 @@ function PlayFabClientApi.CancelTrade(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/CancelTrade", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and virtual
--- currency balances as appropriate
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and
+-- virtual currency balances as appropriate
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/confirmpurchase
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/confirmpurchase#confirmpurchaserequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/confirmpurchase#confirmpurchaseresult
@@ -126,7 +128,9 @@ function PlayFabClientApi.ConfirmPurchase(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/ConfirmPurchase", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's inventory.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's
+-- inventory.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/consumeitem
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/consumeitem#consumeitemrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/consumeitem#consumeitemresult
@@ -223,7 +227,8 @@ function PlayFabClientApi.GetAllUsersCharacters(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetAllUsersCharacters", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/title-wide-data-management/getcatalogitems
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/title-wide-data-management/getcatalogitems#getcatalogitemsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/title-wide-data-management/getcatalogitems#getcatalogitemsresult
@@ -241,7 +246,8 @@ function PlayFabClientApi.GetCharacterData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetCharacterData", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves the specified character's current inventory of virtual goods
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Retrieves the specified character's current inventory of virtual goods
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getcharacterinventory
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getcharacterinventory#getcharacterinventoryrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getcharacterinventory#getcharacterinventoryresult
@@ -291,15 +297,6 @@ function PlayFabClientApi.GetContentDownloadUrl(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetContentDownloadUrl", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Get details about all current running game servers matching the given parameters.
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/matchmaking/getcurrentgames
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/matchmaking/getcurrentgames#currentgamesrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/matchmaking/getcurrentgames#currentgamesresult
-function PlayFabClientApi.GetCurrentGames(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/GetCurrentGames", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
 -- Retrieves a list of ranked friends of the current player for the given statistic, starting from the indicated point in
 -- the leaderboard
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-data-management/getfriendleaderboard
@@ -328,15 +325,6 @@ end
 function PlayFabClientApi.GetFriendsList(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetFriendsList", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
--- Get details about the regions hosting game servers matching the given parameters.
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/matchmaking/getgameserverregions
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/matchmaking/getgameserverregions#gameserverregionsrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/matchmaking/getgameserverregions#gameserverregionsresult
-function PlayFabClientApi.GetGameServerRegions(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/GetGameServerRegions", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Retrieves a list of ranked users for the given statistic, starting from the indicated point in the leaderboard
@@ -376,9 +364,10 @@ function PlayFabClientApi.GetLeaderboardForUserCharacters(request, onSuccess, on
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetLeaderboardForUserCharacters", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- For payments flows where the provider requires playfab (the fulfiller) to initiate the transaction, but the client
--- completes the rest of the flow. In the Xsolla case, the token returned here will be passed to Xsolla by the client to
--- create a cart. Poll GetPurchase using the returned OrderId once you've completed the payment.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ For payments flows where the provider requires playfab (the fulfiller) to initiate the transaction, but the
+-- client completes the rest of the flow. In the Xsolla case, the token returned here will be passed to Xsolla by the
+-- client to create a cart. Poll GetPurchase using the returned OrderId once you've completed the payment.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getpaymenttoken
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getpaymenttoken#getpaymenttokenrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getpaymenttoken#getpaymenttokenresult
@@ -559,6 +548,15 @@ function PlayFabClientApi.GetPlayFabIDsFromPSNAccountIDs(request, onSuccess, onE
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromPSNAccountIDs", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Retrieves the unique PlayFab identifiers for the given set of PlayStation :tm: Network identifiers.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfrompsnonlineids
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfrompsnonlineids#getplayfabidsfrompsnonlineidsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfrompsnonlineids#getplayfabidsfrompsnonlineidsresult
+function PlayFabClientApi.GetPlayFabIDsFromPSNOnlineIDs(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromPSNOnlineIDs", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
 -- IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromsteamids
@@ -598,8 +596,9 @@ function PlayFabClientApi.GetPublisherData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPublisherData", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves a purchase along with its current PlayFab status. Returns inventory items from the purchase that are still
--- active.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Retrieves a purchase along with its current PlayFab status. Returns inventory items from the purchase that
+-- are still active.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getpurchase
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getpurchase#getpurchaserequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getpurchase#getpurchaseresult
@@ -620,7 +619,8 @@ function PlayFabClientApi.GetSharedGroupData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetSharedGroupData", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves the set of items defined for the specified store, including all prices defined
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Retrieves the set of items defined for the specified store, including all prices defined
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/title-wide-data-management/getstoreitems
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/title-wide-data-management/getstoreitems#getstoreitemsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/title-wide-data-management/getstoreitems#getstoreitemsresult
@@ -682,7 +682,8 @@ function PlayFabClientApi.GetUserData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetUserData", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves the user's current inventory of virtual goods
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Retrieves the user's current inventory of virtual goods
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getuserinventory
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getuserinventory#getuserinventoryrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/getuserinventory#getuserinventoryresult
@@ -1267,20 +1268,6 @@ function PlayFabClientApi.LoginWithXbox(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithXbox", request, nil, nil, onSuccess, onError)
 end
 
--- Attempts to locate a game session matching the given parameters. If the goal is to match the player into a specific
--- active session, only the LobbyId is required. Otherwise, the BuildVersion, GameMode, and Region are all required
--- parameters. Note that parameters specified in the search are required (they are not weighting factors). If a slot is
--- found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the
--- availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be
--- GameNotFound.
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/matchmaking/matchmake
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/matchmaking/matchmake#matchmakerequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/matchmaking/matchmake#matchmakeresult
-function PlayFabClientApi.Matchmake(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/Matchmake", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
 -- Opens a new outstanding trade. Note that a given item instance may only be in one open trade at a time.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/trading/opentrade
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/trading/opentrade#opentraderequest
@@ -1290,7 +1277,8 @@ function PlayFabClientApi.OpenTrade(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/OpenTrade", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Selects a payment option for purchase order created via StartPurchase
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Selects a payment option for purchase order created via StartPurchase
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/payforpurchase
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/payforpurchase#payforpurchaserequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/payforpurchase#payforpurchaseresult
@@ -1299,8 +1287,9 @@ function PlayFabClientApi.PayForPurchase(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/PayForPurchase", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase, as well as what
--- the client believes the price to be. This lets the server fail the purchase if the price has changed.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase, as
+-- well as what the client believes the price to be. This lets the server fail the purchase if the price has changed.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/purchaseitem
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/purchaseitem#purchaseitemrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/purchaseitem#purchaseitemresult
@@ -1309,7 +1298,8 @@ function PlayFabClientApi.PurchaseItem(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/PurchaseItem", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
 -- Economy->Catalogs tab in the PlayFab Game Manager.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/redeemcoupon
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/redeemcoupon#redeemcouponrequest
@@ -1338,7 +1328,7 @@ function PlayFabClientApi.RegisterForIOSPushNotification(request, onSuccess, onE
 end
 
 -- Registers a new Playfab user account, returning a session identifier that can subsequently be used for API calls which
--- require an authenticated user. You must supply either a username or an email address.
+-- require an authenticated user. You must supply a username and an email address.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/registerplayfabuser
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/registerplayfabuser#registerplayfabuserrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/registerplayfabuser#registerplayfabuserresult
@@ -1348,6 +1338,7 @@ function PlayFabClientApi.RegisterPlayFabUser(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -1424,7 +1415,8 @@ function PlayFabClientApi.ReportPlayer(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/ReportPlayer", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Restores all in-app purchases based on the given restore receipt
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Restores all in-app purchases based on the given restore receipt
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/restoreiospurchases
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/restoreiospurchases#restoreiospurchasesrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/restoreiospurchases#restoreiospurchasesresult
@@ -1471,7 +1463,8 @@ function PlayFabClientApi.SetPlayerSecret(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/SetPlayerSecret", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Creates an order for a list of items from the title catalog
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Creates an order for a list of items from the title catalog
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/startpurchase
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/startpurchase#startpurchaserequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/startpurchase#startpurchaseresult
@@ -1480,8 +1473,9 @@ function PlayFabClientApi.StartPurchase(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/StartPurchase", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make a VC
--- balance negative with this API.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make
+-- a VC balance negative with this API.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/subtractuservirtualcurrency
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/subtractuservirtualcurrency#subtractuservirtualcurrencyrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/subtractuservirtualcurrency#modifyuservirtualcurrencyresult
@@ -1645,9 +1639,10 @@ function PlayFabClientApi.UnlinkXboxAccount(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkXboxAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Opens the specified container, with the specified key (when required), and returns the contents of the opened container.
--- If the container (and key when relevant) are consumable (RemainingUses > 0), their RemainingUses will be decremented,
--- consistent with the operation of ConsumeItem.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Opens the specified container, with the specified key (when required), and returns the contents of the
+-- opened container. If the container (and key when relevant) are consumable (RemainingUses > 0), their RemainingUses will
+-- be decremented, consistent with the operation of ConsumeItem.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/unlockcontainerinstance
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/unlockcontainerinstance#unlockcontainerinstancerequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/unlockcontainerinstance#unlockcontaineritemresult
@@ -1656,8 +1651,9 @@ function PlayFabClientApi.UnlockContainerInstance(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/UnlockContainerInstance", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Searches target inventory for an ItemInstance matching the given CatalogItemId, if necessary unlocks it using an
--- appropriate key, and returns the contents of the opened container. If the container (and key when relevant) are
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Searches target inventory for an ItemInstance matching the given CatalogItemId, if necessary unlocks it
+-- using an appropriate key, and returns the contents of the opened container. If the container (and key when relevant) are
 -- consumable (RemainingUses > 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/unlockcontaineritem
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/unlockcontaineritem#unlockcontaineritemrequest
@@ -1745,8 +1741,9 @@ function PlayFabClientApi.UpdateUserTitleDisplayName(request, onSuccess, onError
     IPlayFabHttps.MakePlayFabApiCall("/Client/UpdateUserTitleDisplayName", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the
--- purchased catalog item
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches
+-- the purchased catalog item
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validateamazoniapreceipt
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validateamazoniapreceipt#validateamazonreceiptrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validateamazoniapreceipt#validateamazonreceiptresult
@@ -1755,7 +1752,8 @@ function PlayFabClientApi.ValidateAmazonIAPReceipt(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/ValidateAmazonIAPReceipt", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Validates a Google Play purchase and gives the corresponding item to the player.
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Validates a Google Play purchase and gives the corresponding item to the player.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validategoogleplaypurchase
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validategoogleplaypurchase#validategoogleplaypurchaserequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validategoogleplaypurchase#validategoogleplaypurchaseresult
@@ -1764,8 +1762,9 @@ function PlayFabClientApi.ValidateGooglePlayPurchase(request, onSuccess, onError
     IPlayFabHttps.MakePlayFabApiCall("/Client/ValidateGooglePlayPurchase", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased
--- catalog item
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the
+-- purchased catalog item
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validateiosreceipt
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validateiosreceipt#validateiosreceiptrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validateiosreceipt#validateiosreceiptresult
@@ -1774,8 +1773,9 @@ function PlayFabClientApi.ValidateIOSReceipt(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/ValidateIOSReceipt", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the
--- purchased catalog item
+-- _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+-- version 2._ Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it
+-- matches the purchased catalog item
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validatewindowsstorereceipt
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validatewindowsstorereceipt#validatewindowsreceiptrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/validatewindowsstorereceipt#validatewindowsreceiptresult
